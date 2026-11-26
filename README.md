@@ -1,26 +1,38 @@
 # ABC HR Intelligence
-Ứng dụng mô phỏng HR Analytics dùng IBM HR Analytics.
 
-## Cài đặt trên Windows PowerShell
+Ứng dụng HR Analytics mô phỏng dùng bộ dữ liệu IBM HR Analytics, xây dựng bằng Streamlit.
+
+## Cài đặt nhanh
+
+Cần cài Git và Python 3.10 trở lên. Clone dự án:
+
+```bash
+git clone https://github.com/Seu-Sky/Du_an_hoc_may.git
+cd Du_an_hoc_may
+```
+
+Tạo môi trường ảo và cài các thư viện.
+
+**Windows PowerShell:**
+
 ```powershell
-cd ABC_HR_Intelligence
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-Mở http://127.0.0.1:8000
-
-Nếu PowerShell chặn activate:
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\.venv\Scripts\Activate.ps1
+python -m streamlit run app.py
 ```
 
-## Cách chạy
-1. Tải CSV IBM HR Analytics từ Kaggle.
-2. Mở giao diện và tải CSV lên (cần cột `Attrition` với Yes/No).
-3. Xem Tổng quan, EDA, huấn luyện ML, thử dự đoán, xem khuyến nghị.
-4. CSV được lưu tại `data/hr_data.csv`; đồng thời dữ liệu được nạp vào SQLite `data/abc_hr.db`, bảng `hr_employees`. File mô hình được lưu trong `artifacts/`.
+**macOS/Linux:**
 
-Dữ liệu IBM HR Analytics là dữ liệu mô phỏng phục vụ nghiên cứu, không phải hồ sơ nhân viên thật của ABC. Điểm rủi ro chỉ hỗ trợ phân tích, không được dùng làm căn cứ duy nhất để ra quyết định bất lợi với nhân viên.
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+python -m streamlit run app.py
+```
+
+Mở địa chỉ Streamlit hiển thị trong Terminal, thường là http://localhost:8501. Hướng dẫn chi tiết và cách xử lý lỗi kích hoạt môi trường ảo trên Windows có trong [huongdan.md](huongdan.md).
+
+Ứng dụng có sẵn dữ liệu mẫu `WA_Fn-UseC_-HR-Employee-Attrition.csv`; file CSV tải lên cần có cột `Attrition` với giá trị `Yes/No` hoặc `1/0`.
